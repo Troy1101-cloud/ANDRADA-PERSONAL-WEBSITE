@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photo Dump — Troy Winter Andrada</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
+
+    /* --- Global Resets --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+        font-family: 'Inter', sans-serif;
+        background: #000 url('../assets/images/dark-texture-background-1ww1corpzr0l0sji.jpg') no-repeat center center;
+        background-attachment: fixed;
+        background-size: cover;
+        color: #e0e0e0;
+        line-height: 1.8;
+        min-height: 100vh;
+    }
+
+    h1, h2, h3, .logo {
+        font-family: 'Playfair Display', serif;
+        font-weight: 400;
+    }
+
+    /* --- Navigation --- */
+    nav {
+        background: rgba(5, 5, 5, 0.8);
+        padding: 25px 5%;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(15px);
+    }
+    nav ul {
+        list-style: none;
+        max-width: 1600px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    nav a {
+        color: #ddd;
+        text-decoration: none;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: color 0.3s ease;
+    }
+    nav a:hover { color: #fff; }
+    nav .logo { color: #fff; letter-spacing: 4px; font-size: 1.2rem; }
+
+    /* --- Hero Section --- */
+    .hero {
+        padding: 100px 5%;
+        text-align: center;
+        background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+    }
+    .hero h1 {
+        font-size: clamp(3rem, 8vw, 5rem);
+        color: #fff;
+        letter-spacing: 5px;
+        margin-bottom: 20px;
+    }
+    .hero p {
+        color: #c9a050;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        font-size: 0.9rem;
+    }
+
+    /* --- Content Wrapper --- */
+    .content-wrapper {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 60px 5%;
+    }
+
+    .category-section {
+        margin-bottom: 120px;
+    }
+
+    .category-title {
+        font-size: 2.5rem;
+        color: #fff;
+        margin-bottom: 40px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding-bottom: 15px;
+        font-style: italic;
+    }
+
+    /* --- FIXED GRID SIZING --- */
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    /* Applied styling to both classes used in your HTML */
+    .gallery-item, .photo-item {
+        background: rgba(15, 15, 15, 0.6);
+        border: 1px solid rgba(255,255,255,0.05);
+        padding: 15px;
+        transition: all 0.5s ease;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .gallery-item:hover, .photo-item:hover {
+        transform: translateY(-10px);
+        background: rgba(20, 20, 20, 0.8);
+        border-color: #c9a050;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+
+    /* Force every image to be the same height and crop correctly */
+    .gallery-item img, .photo-item img {
+        width: 100%;
+        height: 350px; /* Fixed height for consistency */
+        object-fit: cover; /* Prevents stretching */
+        filter: grayscale(100%) sepia(20%);
+        transition: all 0.6s ease;
+        display: block;
+    }
+
+    .gallery-item:hover img, .photo-item:hover img {
+        filter: grayscale(0%) sepia(0%);
+    }
+
+    .gallery-label, .photo-caption {
+        margin-top: 15px;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #888;
+        transition: color 0.3s ease;
+        text-align: center;
+    }
+
+    .gallery-item:hover .gallery-label, .photo-item:hover .photo-caption {
+        color: #c9a050;
+    }
+
+    /* --- Footer & UI --- */
+    .footer-nav { text-align: center; margin: 100px 0; }
+    .btn-museum {
+        display: inline-block;
+        padding: 18px 40px;
+        background: transparent;
+        color: #fff;
+        border: 1px solid #fff;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-size: 0.8rem;
+        transition: all 0.4s ease;
+    }
+    .btn-museum:hover { background: #fff; color: #000; }
+
+    footer {
+        text-align: center;
+        padding: 60px 0;
+        color: #444;
+        font-family: 'Playfair Display', serif;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    @media (max-width: 768px) {
+        .gallery-grid { grid-template-columns: 1fr; }
+        .gallery-item img, .photo-item img { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li class="logo">STORIES WRITTEN IN CODE</li>
+        <li><a href="../index.html">← Back to Exhibition</a></li>
+    </ul>
+</nav>
+
+<header class="hero">
+    <h1>Archive</h1>
+    <p>A Curated Visual History</p>
+</header>
+
+<div class="content-wrapper">
+
+    <section class="category-section">
+        <h2 class="category-title">01. Origins</h2>
+        <div class="gallery-grid">
+            
+        </div>
+    </section>
+
+    <section class="category-section">
+        <h2 class="category-title">02. Intelligence</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="viewImage('../assets/images/AI.jpg')">
+                <img src="../assets/images/AI.jpg" alt="AI Technology">
+                <div class="gallery-label">Neural Pathways</div>
+            </div>
+            <div class="gallery-item" onclick="viewImage('../assets/images/AI TUTOR.jpg')">
+                <img src="../assets/images/AI TUTOR.jpg" alt="AI Tutor">
+                <div class="gallery-label">The Digital Mentor</div>
+            </div>
+            <div class="gallery-item" onclick="viewImage('../assets/images/conclusion ai.jpg')">
+                <img src="../assets/images/conclusion ai.jpg" alt="AI Conclusion">
+                <div class="gallery-label">Synthesized Future</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-section">
+        <h2 class="category-title">03. Synergy</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="viewImage('../assets/images/BLOG 2 - 1.jpg')">
+                <img src="../assets/images/BLOG 2 - 1.jpg" alt="Growing Together">
+                <div class="gallery-label">Unified Growth</div>
+            </div>
+            <div class="gallery-item" onclick="viewImage('../assets/images/BLOG 2 - 2.jpg')">
+                <img src="../assets/images/BLOG 2 - 2.jpg" alt="Mutual Support">
+                <div class="gallery-label">Core Foundations</div>
+            </div>
+            <div class="gallery-item" onclick="viewImage('../assets/images/BLOG 2 5.jpg')">
+                <img src="../assets/images/BLOG 2 5.jpg" alt="Future">
+                <div class="gallery-label">Horizon Perspectives</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-section">
+        <h2 class="category-title">04. The Persona</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="viewImage('../assets/images/billiard table.jpg')">
+                <img src="../assets/images/billiard table.jpg" alt="Portrait">
+                <div class="gallery-label">Primary Portrait</div>
+            </div>
+            <div class="gallery-item" onclick="viewImage('../assets/images/for landing page troy.jpg')">
+                <img src="../assets/images/for landing page troy.jpg" alt="Casual">
+                <div class="gallery-label">Candid Study</div>
+            </div>
+            <div class="gallery-item" onclick="viewImage('../assets/images/league-of-legends-faker.jpg')">
+                <img src="../assets/images/league-of-legends-faker.jpg" alt="Faker">
+                <div class="gallery-label">Inspiration</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer-nav">
+        <a href="../index.html" class="btn-museum">Return to Home</a>
+    </div>
+
+</div>
+
+<footer>
+    Photo Archive — Troy Winter Andrada
+</footer>
+
+<script>
+    function viewImage(url) {
+        window.open(url, 'gallery_view');
+    }
+</script>
+
+</body>
+</html>
